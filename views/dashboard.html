@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> node-form-example </title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" style="color: green;">Form List</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Input<span class="sr-only">(current)</span></a></li>
+                <li><a href="/radio">radio</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" onmouseover="
+                            $('ul.nav li.dropdown').hover(function() {
+                                $(this).find('.dropdown-menu').delay(50).fadeIn(500);
+                            }, function() {
+                                $(this).find('.dropdown-menu').stop(true, true).delay(50).fadeOut(500);
+                            });" role="button" aria-haspopup="true" aria-expanded="false">Select(not implemented)<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/user/:user1">user1</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/user/:user2">user2</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div>
+    <form role="form"  method="post" action="/input/solve">
+        <div class="row">
+        <div class="form-group col-xs-12 col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <div class="inputStyle">
+                <input type="text" class="form-control username" placeholder="Enter username" name="username" onblur="
+                $.ajax({
+                    type: 'POST',
+                    url: '/input/username',
+                    dataType: 'json',
+                    data: { 'username' : $(this).val() },
+                    success : function(result,x,b){ $('.username').removeClass('error').addClass('success');$('p').remove('.errorMsg');;$('.success').length ==4 ?$('#submitButton').prop('disabled',false):$('#submitButton').prop('disabled',true)},
+                    error : function(err,a,b) { $('p').remove('.errorMsg');  $('.username').addClass('error').removeClass('success').parent('div').append(' <p class=\'errorMsg\'> * '+err.responseJSON.err+'</p>');$('#submitButton').prop('disabled',true)}
+                });">
+            </div>
+            <div class="inputStyle">
+                <input type="text" class="form-control number" placeholder="Enter mobile number" name="mobileNumber" onblur="
+                $.ajax({type: 'POST',
+                url: '/input/number',
+                dataType: 'json',
+                data: { 'mobileNumber' : $(this).val() },
+                success : function(result,x,b){ $('.number').removeClass('error').addClass('success');$('p').remove('.errorMsg');;$('.success').length ==4 ?$('#submitButton').prop('disabled',false):$('#submitButton').prop('disabled',true)},
+                error : function(err,a,b) { $('p').remove('.errorMsg');  $('.number').addClass('error').removeClass('success').parent('div').append(' <p class=\'errorMsg\'> * '+err.responseJSON.err+'</p>');$('#submitButton').prop('disabled',true)}
+                });">
+            </div>
+            <div class="inputStyle">
+                <input type="text" class="form-control email " placeholder="Enter email" name="email" onblur="
+                $.ajax({
+                    type: 'POST',
+                    url: '/input/email',
+                    dataType: 'json',
+                    data: { 'email' : $(this).val() },
+                    success : function(result,x,b){$('.email').removeClass('error').addClass('success');$('p').remove('.errorMsg');;$('.success').length ==4 ?$('#submitButton').prop('disabled',false):$('#submitButton').prop('disabled',true)},
+                    error : function(err,a,b) { $('p').remove('.errorMsg');  $('.email').addClass('error').removeClass('success').parent('div').append('<p class=\'errorMsg\'> * '+err.responseJSON.err+'</p>');$('#submitButton').prop('disabled',true)}
+                });">
+            </div>
+            <div class="inputStyle">
+                <input type="text" class="form-control password " placeholder="Enter password" name="password" onblur="
+                $.ajax({
+                    type: 'POST',
+                    url: '/input/password',
+                    dataType: 'json',
+                    data: { 'password' : $(this).val() },
+                    success : function(result,x,b){$('.password').removeClass('error').addClass('success');$('p').remove('.errorMsg');$('.success').length ==4 ?$('#submitButton').prop('disabled',false):$('#submitButton').prop('disabled',true)},
+                    error : function(err,a,b) { $('p').remove('.errorMsg');  $('.password').addClass('error').removeClass('success').parent('div').append('<p class=\'errorMsg\'> * '+err.responseJSON.err+'</p>');$('#submitButton').prop('disabled',true)}
+                });">
+            </div>
+        </div>
+        <div class="col-sm-offset-3 col-md-offset-3">
+
+        </div>
+       </div>
+        <div class="row">
+            <button type="submit" class="btn btn-primary col-md-1 col-md-offset-8 col-xs-3 col-xs-offset-6" id="submitButton" disabled="true">submit</button>
+        </div>
+    </form>
+</div>
+</body>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+</html>

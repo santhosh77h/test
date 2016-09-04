@@ -1,0 +1,26 @@
+body {
+  padding: 0px 50px 50px 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+.error {
+  border: 1px solid red;
+}
+.inputStyle {
+  margin: 10px 0px 5px 0px;
+}
+.errorMsg {
+  color: red;
+}
+.success {
+  border : 1px solid green;
+}
+.radio-example :hover{
+  color: darkgoldenrod;
+}
+.navbar-brand :hover{
+  color: red;
+}

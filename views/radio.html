@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> node-form-example </title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" style="color: green;">Form List</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li ><a href="/">Input<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/#">radio</a></li>
+            </ul>
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div>
+    <div class="row col-md-12 col-xs-12">
+        <div class="row" style="display: -webkit-box">
+            <div class="col-md-2 col-xs-3" style="padding-top: 12px">
+                <button type="button" class="btn btn-default" onclick="$('#btnContent').text() == 'Enable' ? function(){$('#btnContent').html('Disable'); $('.radioButton').prop('disabled',false)}() : function(){$('#btnContent').html('Enable');$('.radioButton').prop('disabled',true)}() ; "><span id="btnContent">Disable</span></button>
+            </div>
+            <div class="input-group radio-example col-md-3 col-xs-3">
+              <div>
+                  <label for="ex1">
+                      <input type="radio" name="default" class="radioButton" id="ex1" onclick="$('.selected').remove();$('.results').append('<p class=\'selected\'> '+ JSON.stringify({data : 'ex1',id:'1'}) + '</p>');            $('#re1').prop('checked',this.value)"> ex1
+                  </label>
+              </div>
+              <div>
+                  <label for="ex2">
+                      <input type="radio" name="default" class="radioButton" aria-label="ex2" id="ex2" onclick="$('.selected').remove();$('.results').append('<p class=\'selected\'> '+ JSON.stringify({data : 'ex2',id:'2'}) + '</p>' );$('#re2').prop('checked',this.value)"> ex2
+                  </label>
+              </div>
+              <div>
+                  <label for="ex3">
+                      <input type="radio" name="default" class="radioButton" aria-label="ex3" id="ex3" onclick="$('.selected').remove();$('.results').append('<p class=\'selected\'> '+ JSON.stringify({ data : 'ex3',id:'3'}) + '</p>' );$('#re3').prop('checked',this.value)"> ex3
+                  </label>
+              </div>
+            </div>
+            <div class="input-group radio-example col-md-3 col-xs-3">
+                <div >
+                    <label for="re1"><input type="radio" class="radioButton" name="replica" id="re1" onclick="$('.selected').remove();$('#ex1').prop('checked',this.value);$('.results').append('<p class=\'selected\'> '+ JSON.stringify({ data : 'ex1',id:'1'}) + '</p>' )"> re1
+                    </label>
+                </div>
+                <div>
+                    <label for="re2">
+                        <input type="radio" name="replica" class="radioButton" aria-label="ex2" id="re2" onclick="$('.selected').remove();$('#ex2').prop('checked',this.value);$('.results').append('<p class=\'selected\'> '+ JSON.stringify({ data : 'ex2',id:'2'}) + '</p>' )"> re2
+                    </label>
+                </div>
+                <div>
+                    <label for="re3"><input type="radio" class="radioButton" name="replica" aria-label="2x3" id="re3" onclick="$('.selected').remove();;$('#ex3').prop('checked',this.value);$('.results').append('<p class=\'selected\'> '+ JSON.stringify({ data : 'ex3',id:'3'}) + '</p>' )"> re3
+                    </label>
+                </div>
+            </div>
+            <div class="results col-md-3 col-xs-3" class="radioButton" style="border: 1px solid black;text-align: center;padding-top: 15px;background-color: #f3f3f3">
+                <div> OUTPUT </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div><hr></div>
+    <div>
+    <div class="row col-md-offset-4 col-md-4 col-xs-4 col-xs-offset-3">
+        <div>
+            <label for="dosa">
+                <input type="radio" name="food" class="radioButton" id="dosa" onclick="getData($(this).attr('id'))"> dosa</label>
+        </div>
+        <div>
+            <label for="idly">
+                <input type="radio" name="food" class="radioButton" id="idly" onclick="getData($(this).attr('id'))"> idly</label>
+        </div>
+        <div>
+            <label for="puri">
+                <input type="radio" name="food" class="radioButton" id="puri" onclick="getData($(this).attr('id'))"> puri</label>
+        </div>
+        <div>
+            <label for="palav">
+                <input type="radio" name="food" class="radioButton" id="palav" onclick="getData($(this).attr('id'))"> palav</label>
+        </div>
+        <div>
+            <label for="vada">
+                <input type="radio" name="food" class="radioButton" id="vada" onclick="getData($(this).attr('id'))"> vada</label>
+        </div>
+        <div>
+            <label for="bonda">
+                <input type="radio" name="food" class="radioButton" id="bonda" onclick="getData($(this).attr('id'))"> bonda</label>
+        </div>
+    </div>
+        <div class="col-md-4 col-xs-5 foodSelected" id="selectedFood" style="border: 1px solid black;text-align: center;padding-top: 15px;background-color: #f3f3f3;overflow: scroll">
+                OUTPUT
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    function getData(x){
+        $('#selectedFood').html('OUTPUT <br>'+ JSON.stringify({id : x , selectedFood : x}))
+    }
+</script>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+</html>
